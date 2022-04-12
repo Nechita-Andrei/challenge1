@@ -1,0 +1,102 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "",
+        "contact": {
+            "email": "manan@mananpatel.in"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/import": {
+            "post": {
+                "tags": [
+                    "Import"
+                ],
+                "summary": "Post room information",
+                "description": "Save room and people in database",
+                "operationId": "ef22cad252ea88621000fc341da08bf4",
+                "requestBody": {
+                    "description": "Rooms info",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Content not valid or file is null"
+                    }
+                }
+            }
+        },
+        "/room/{roomnumber}": {
+            "get": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Get a room information",
+                "description": "Returns information about the room and about the people in there",
+                "operationId": "54ef7d14781bc441ff9b64868c45037c",
+                "parameters": [
+                    {
+                        "name": "roomnumber",
+                        "in": "path",
+                        "description": "Room number",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Room not found or room number is incorrect"
+                    }
+                }
+            }
+        },
+        "/room": {
+            "get": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Get all rooms informations",
+                "description": "Returns all data from rooms",
+                "operationId": "4fe58bef180c5d476332ce0d888cb5e7",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        }
+    }
+}
